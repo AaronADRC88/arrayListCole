@@ -61,7 +61,7 @@ public class Cole {
         String auxNome;
         int auxNota;
         auxNome = this.pedirNome();
-        while (auxNome.compareToIgnoreCase("fin") != 0 ) {
+        while (auxNome.compareToIgnoreCase("fin") != 0) {
             auxNota = this.pedirNota();
             alum.add(new Cole(auxNome, auxNota));
             auxNome = this.pedirNome();
@@ -69,7 +69,7 @@ public class Cole {
     }
 
     public void amosar() {
-        
+
         String Saida = "";
         for (int i = 0; i < alum.size(); i++) {
             Saida += "\nNome : " + alum.get(i).getNome();
@@ -82,33 +82,32 @@ public class Cole {
     public void engadir() {
         String auxNome;
         int auxNota;
-        int pos = Integer.parseInt(JOptionPane.showInputDialog("introduce a posición na que queres engadir\n(posicións permitidas :(0,"+alum.size()+"))" ));
+        int pos = Integer.parseInt(JOptionPane.showInputDialog("introduce a posición na que queres engadir\n(posicións permitidas :(0," + alum.size() + "))"));
         auxNome = this.pedirNome();
 
         auxNota = this.pedirNota();
-        alum.add(pos,new Cole(auxNome, auxNota));
+        alum.add(pos, new Cole(auxNome, auxNota));
 
     }
 
     public void borrar() {
-        boolean buscador=false;
+        boolean buscador = false;
         String nomClean = JOptionPane.showInputDialog("introduce nome a borrar");
-        Iterator it = alum.iterator();
-        for(int i=0;i<alum.size();i++){
-        it.next();
-        if(alum.contains(nomClean)){
-        buscador=true;
-        alum.get(i);
-        alum.remove(i);
+        Iterator<Cole> it = alum.iterator();
+        while (it.hasNext()) {
+            Cole elem = it.next();
+            if (elem.nome.equalsIgnoreCase(nomClean)) {
+                buscador = true;
+                it.remove();
+            }
         }
+
+        if (buscador) {
+            JOptionPane.showMessageDialog(null, nomClean + " borrado");
+        } else {
+            JOptionPane.showMessageDialog(null, nomClean + " non existe", "ERROR", JOptionPane.WARNING_MESSAGE);
         }
-        
-    if(buscador)
-        JOptionPane.showMessageDialog(null, nomClean+" borrado");
-    else
-        JOptionPane.showMessageDialog(null, nomClean+" non existe", "ERROR", JOptionPane.WARNING_MESSAGE);
     }
-    
 
     public void ordear() {
         Collections.sort(alum, null);
