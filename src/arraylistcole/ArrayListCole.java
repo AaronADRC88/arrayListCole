@@ -7,7 +7,7 @@ public class ArrayListCole {
     public static void main(String[] args) {
         Cole obx = new Cole();
         int op;
-        int creado=0;
+        int creado = 0;
         do {
 
             op = Cole.menuSelect();
@@ -15,39 +15,43 @@ public class ArrayListCole {
                 case 1:
                     if (op == 1) {
                         obx.crearArray();
-                    creado=1;
+                        creado = 1;
                     }
                     break;
                 case 2:
                     if (op == 2) {
-                        if(1==creado)
-                        obx.amosar();
-                        else
+                        if (1 == creado) {
+                            obx.amosar();
+                        } else {
                             JOptionPane.showMessageDialog(null, "crea un array", "ERROR", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                     break;
                 case 3:
                     if (op == 3) {
-                        if(1==creado)
-                        obx.engadir();
-                        else
-                           JOptionPane.showMessageDialog(null, "crea un array", "ERROR", JOptionPane.WARNING_MESSAGE);
+                        if (1 == creado) {
+                            obx.engadir();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "crea un array", "ERROR", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                     break;
                 case 4:
                     if (op == 4) {
-                       if(1==creado)
-                        obx.borrar();
-                       else
+                        if (1 == creado) {
+                            obx.borrar();
+                        } else {
                             JOptionPane.showMessageDialog(null, "crea un array", "ERROR", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                     break;
                 case 5:
                     if (op == 5) {
-                       if(1==creado)
-                        obx.ordear();
-                       else
+                        if (1 == creado) {
+                            obx.ordear();
+                        } else {
                             JOptionPane.showMessageDialog(null, "crea un array", "ERROR", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                     break;
                 case 6:
@@ -55,6 +59,6 @@ public class ArrayListCole {
                         System.exit(0);
                     }
             }
-        } while (op != 6 && op!=0);
+        } while (op != 6 && op != 0);
     }
 }

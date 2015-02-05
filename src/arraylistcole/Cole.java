@@ -1,62 +1,63 @@
 package arraylistcole;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-public class Cole {
-
+public class Cole implements Comparable {
+    
     private String nome;
     private int nota;
-
+    
     ArrayList<Cole> alum = new ArrayList<Cole>();
-
+    
     public Cole(String nome, int nota) {
         this.nome = nome;
         this.nota = nota;
     }
-
+    
     public Cole() {
     }
-
+    
     public String getNome() {
         return nome;
     }
-
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    
     public int getNota() {
         return nota;
     }
-
+    
     public void setNota(int nota) {
         this.nota = nota;
     }
-
+    
     @Override
     public String toString() {
         return "Cole{" + "nome=" + nome + ", nota=" + nota + '}';
     }
-
+    
     public static int menuSelect() {
         int opcion = JOptionPane.showOptionDialog(null, "Selecciona unha opción", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{"Crear Array", "Amosar", "engadir elemento", "borrar elemento", "Ordear", "Sair do programa"}, "Sair do programa");
         return opcion + 1;
-
+        
     }
-
+    
     public String pedirNome() {
         String nom = JOptionPane.showInputDialog("introduce nome");
         return nom;
     }
-
+    
     public int pedirNota() {
         int nom = Integer.parseInt(JOptionPane.showInputDialog("introduce nota"));
         return nom;
     }
-
+    
     public void crearArray() {
         String auxNome;
         int auxNota;
@@ -67,9 +68,9 @@ public class Cole {
             auxNome = this.pedirNome();
         }
     }
-
+    
     public void amosar() {
-
+        
         String Saida = "";
         for (int i = 0; i < alum.size(); i++) {
             Saida += "\nNome : " + alum.get(i).getNome();
@@ -78,18 +79,18 @@ public class Cole {
         }
         JOptionPane.showMessageDialog(null, Saida);
     }
-
+    
     public void engadir() {
         String auxNome;
         int auxNota;
         int pos = Integer.parseInt(JOptionPane.showInputDialog("introduce a posición na que queres engadir\n(posicións permitidas :(0," + alum.size() + "))"));
         auxNome = this.pedirNome();
-
+        
         auxNota = this.pedirNota();
         alum.add(pos, new Cole(auxNome, auxNota));
-
+        
     }
-
+    
     public void borrar() {
         boolean buscador = false;
         String nomClean = JOptionPane.showInputDialog("introduce nome a borrar");
@@ -101,15 +102,27 @@ public class Cole {
                 it.remove();
             }
         }
-
+        
         if (buscador) {
             JOptionPane.showMessageDialog(null, nomClean + " borrado");
         } else {
             JOptionPane.showMessageDialog(null, nomClean + " non existe", "ERROR", JOptionPane.WARNING_MESSAGE);
         }
     }
+    
+    @Override
+    public int compareTo(Object o) {
+        Cole al = (Cole) o;
+        if (this.nome.compareToIgnoreCase(al.nome) == 0) {
+            return 0;
+        } else if (this.nome.compareToIgnoreCase(al.nome) >= 0) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 
     public void ordear() {
-        Collections.sort(alum, null);
+        Collections.sort(alum);
     }
 }
